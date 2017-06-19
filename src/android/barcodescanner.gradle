@@ -1,7 +1,10 @@
-def DEFAULT_MIN_SDK_VERSION = 16
-def minSdk = Math.max(DEFAULT_MIN_SDK_VERSION, cdvHelpers.getConfigPreference('android-minSdkVersion',0) as Integer);
-if (cdvMinSdkVersion == null || cdvMinSdkVersion < minSdk ) {
-    ext.cdvMinSdkVersion = minSdk;
+def DEFAULT_MIN_SDK_VERSION = 15
+def minSdkVersion = Math.max(DEFAULT_MIN_SDK_VERSION, cdvHelpers.getConfigPreference('android-minSdkVersion',0) as Integer);
+
+if(cdvMinSdkVersion == null) {
+    ext.cdvMinSdkVersion = minSdkVersion;
+} else if (cdvMinSdkVersion.toInteger() < minSdkVersion) {
+    ext.cdvMinSdkVersion = minSdkVersion;
 }
 
 repositories{
